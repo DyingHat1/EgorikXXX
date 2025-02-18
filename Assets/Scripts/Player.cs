@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     {
         Vector3 _newDirection = transform.TransformDirection(_playerMovementInput);
 
-        if(_controller.isGrounded)
+        if (_controller.isGrounded)
         {
             _velocity.y = -1f;
 
@@ -56,6 +56,17 @@ public class Player : MonoBehaviour
     {
         _rotation -= _mouseInput.y * _sens;
         transform.Rotate(0f, _mouseInput.x * _sens, 0f);
+    
+        if (_rotation > 90)
+        {
+            _rotation = 90;
+        }
+
+        if (_rotation < -90)
+        {
+            _rotation = -90;
+        }
+
         _playerCamera.transform.localRotation = Quaternion.Euler(_rotation, 0f, 0f);
     }
 }
